@@ -23,7 +23,7 @@ $(function() {
 
     $('#reg-form').on('submit', function(e) {
         e.preventDefault();
-        $.post('http://ajax.frontend.itheima.net/api/reguser', data, function(res) {
+        $.post('/api/reguser', data, function(res) {
             if (res.status !== 0) return layer.msg(res.message, { timer: 1500 });
             $('#reg-form [name=password]').val('');
             $('#reg-form [name=username]').val('');
@@ -37,7 +37,7 @@ $(function() {
         e.preventDefault();
         $.ajax({
             method: 'POST',
-            url: 'http://ajax.frontend.itheima.net/api/login',
+            url: '/api/login',
             data: $(this).serialize(),
             success: function(res) {
                 if (res.status !== 0) return layer.msg(res.message, { time: 1500 });
