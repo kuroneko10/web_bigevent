@@ -44,7 +44,7 @@ $(function() {
                 layer.msg(res.message, { time: 1500 });
                 console.log(res.token);
                 localStorage.setItem('token', res.token);
-                location.href = '/index.html'
+                location.href = '/第四阶段/第四阶段笔记/3.大事件后台管理/index.html'
             }
         })
     })
