@@ -29,7 +29,7 @@
                         <dd><a href="javascript:;">重置密码</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href=""><span class="iconfont icon-tuichu"></span> 登出</a></li>
+                <li class="layui-nav-item"><a href="javascript:void(0);" id="btn_logout"><span class="iconfont icon-tuichu"></span> 登出</a></li>
             </ul>
         </div>
 
@@ -37,7 +37,7 @@
             <div class="layui-side-scroll">
                 <div class="userinfo">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> <span class="text-avatar">A</span>
-                    <span id="welcome">welcome!</span>
+                    <span id="welcome"></span>
                 </div>
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree" lay-filter="test" lay-shrink='all'>
@@ -75,6 +75,9 @@
 </body>
 
 <!-- javascript -->
+<script src="./assets/./lib/./jquery.js"></script>
 <script src="./assets/./lib/layui/./layui.all.js"></script>
+<script src="./assets/./js/./baseAPI.js"></script>
+<script src="./assets/./js/./index.js"></script>
 
 </html>
