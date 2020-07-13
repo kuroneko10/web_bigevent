@@ -3,7 +3,6 @@ $(function() {
     var form = layui.form;
     var indexAdd;
     var indexEdit;
-    var indexDel;
     initArtCateList();
 
     function initArtCateList() {
@@ -77,14 +76,14 @@ $(function() {
 
     $('#tbody').on('click', '.btn_del', function() {
         var id = $(this).attr('data-id');
-        indexDel = layer.confirm('确定要删除这一项吗?', { icon: 3, title: '提示' }, function(index) {
+        layer.confirm('确定要删除这一项吗?', { icon: 3, title: '提示' }, function(index) {
             $.ajax({
                 method: 'GET',
                 url: `/my/article/deletecate/${id}`,
                 success: function(res) {
                     if (res.status !== 0) return layer.msg(res.message);
                     layer.msg(res.message);
-                    layer.close(indexDel);
+                    layer.close(index);
                     initArtCateList();
                 }
             })
