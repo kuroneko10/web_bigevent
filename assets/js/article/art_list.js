@@ -1,12 +1,13 @@
 $(function() {
     var q = {
-        pagenum: 2,
-        pagesize: 3,
+        pagenum: 1,
+        pagesize: 2,
         cate_id: '',
         state: ''
     }
     var layer = layui.layer;
     var form = layui.form;
+    var laypage = layui.laypage;
 
     template.defaults.imports.dataFormat = function(date) {
         const dt = new Date(date);
@@ -30,6 +31,14 @@ $(function() {
         return n;
     }
 
+    function renderPage(total) {
+        laypage.render({
+            elem: 'pageBox',
+            count: total,
+
+        })
+    }
+
     function initTable() {
         $.ajax({
             method: 'GET',
@@ -39,6 +48,7 @@ $(function() {
                 if (res.status !== 0) return layer.msg(res.message);
                 var htmlStr = template('tpl-table', res);
                 $('tbody').html(htmlStr);
+                renderPage(res.total);
             }
         })
     }
@@ -55,4 +65,15 @@ $(function() {
             }
         })
     }
+
+    $('#form-search').on('submit', function(e) {
+        e.preventDefault();
+
+        var cate_id = $('[name=cate_id]').val();
+        var state = $('[name=state]').val();
+        q.cate_id = cate_id;
+        q.state = state;
+
+        initTable();
+    })
 })
