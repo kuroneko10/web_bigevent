@@ -35,7 +35,15 @@ $(function() {
         laypage.render({
             elem: 'pageBox',
             count: total,
-
+            limit: q.pagesize,
+            curr: q.pagenum,
+            jump: function(obj, first) {
+                q.pagenum = obj.curr;
+                q.pagesize = obj.limit;
+                if (!first) initTable();
+            },
+            layout: ['count', 'limit', 'prev', 'page', 'next', 'skip'],
+            limits: ['2', '3', '5', '10']
         })
     }
 
@@ -75,5 +83,23 @@ $(function() {
         q.state = state;
 
         initTable();
+    })
+
+    $('tbody').on('click', '.btn_del', function() {
+        var len = $('.btn_del').length;
+        var id = $(this).attr('data-id');
+        layer.confirm('确定要删除这一项吗?', { icon: 3, title: '提示' }, function(index) {
+            $.ajax({
+                method: 'GET',
+                url: `/my/article/delete/${id}`,
+                success: function(res) {
+                    if (res.status !== 0) return layer.msg(res.message);
+                    layer.msg(res.message);
+                    if (len <= 1) q.pagenum = q.pagenum === 1 ? 1 : q.pagenum - 1;
+                    initTable();
+                }
+            })
+            layer.close(index);
+        })
     })
 })
