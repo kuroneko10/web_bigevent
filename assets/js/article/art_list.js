@@ -20,7 +20,7 @@ $(function() {
         var min = padZero(dt.getMinutes());
         var sec = padZero(dt.getSeconds());
 
-        return `${y}-${m}-${d}&nbsp;&nbsp;${hou}:${min}:${sec}`;
+        return `${y}-${m}-${d}  ${hou}:${min}:${sec}`;
     }
 
     initTable();
